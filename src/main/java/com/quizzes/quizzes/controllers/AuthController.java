@@ -6,12 +6,9 @@ import com.quizzes.quizzes.dtos.RegisterRequestDTO;
 import com.quizzes.quizzes.dtos.ResponseDTO;
 import com.quizzes.quizzes.infra.security.TokenService;
 import com.quizzes.quizzes.models.User;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;

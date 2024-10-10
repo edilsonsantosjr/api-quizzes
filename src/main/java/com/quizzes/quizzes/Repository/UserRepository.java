@@ -1,6 +1,5 @@
 package com.quizzes.quizzes.Repository;
 
-import com.quizzes.quizzes.models.Option;
 import com.quizzes.quizzes.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

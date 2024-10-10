@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Document
 @Getter
@@ -24,5 +25,5 @@ public class User {
     private String profilePicture;
     private LocalDateTime createdAt;
     private String locale;
-    private Quiz quizzes;
+    private List<Quiz> quizzes;
 }
