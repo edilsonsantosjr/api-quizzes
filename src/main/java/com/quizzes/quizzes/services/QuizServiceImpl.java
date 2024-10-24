@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +39,39 @@ public class QuizServiceImpl implements QuizService {
         }
 
         return quiz.get();
+    }
+
+    @Override
+    public List<Quiz> getAllQuiz(String id) {
+        List<Quiz> quizList = quizRepository.findByAuthorId(id);
+        if(quizList.isEmpty()){
+            throw new QuizException("Quiz not found");
+        }
+
+        return quizList;
+    }
+
+    @Override
+    public Quiz updateQuiz(String id, Integer score) {
+        Optional<Quiz> quizModel = quizRepository.findById(id);
+        if(quizModel.isEmpty()){
+            throw new QuizException("Quiz not found");
+        }
+        quizModel.get().setScore(score);
+        LocalDateTime updateAt = LocalDateTime.now();
+        quizModel.get().setUpdateAt(updateAt);
+
+        return quizRepository.save(quizModel.get());
+    }
+
+    @Override
+    public void deleteQuiz(String id) {
+        Optional<Quiz> quizModel = quizRepository.findById(id);
+
+        if(quizModel.isEmpty()){
+            throw new QuizException("Quiz not found");
+        }
+
+        quizRepository.delete(quizModel.get());
     }
 }
