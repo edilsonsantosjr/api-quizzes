@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -36,7 +36,6 @@ public class UserController {
     public ResponseEntity<Object> updateUser(Authentication authentication, @RequestBody UserRequestDTO userRequestDTO){
         User authenticatedUser = (User) authentication.getPrincipal();
         String email = authenticatedUser.getEmail();
-        System.out.println(email);
         UserResponseDTO userResponseDTO;
         try {
             userResponseDTO = userService.updateUser(email, userRequestDTO);
@@ -47,5 +46,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userResponseDTO);
     }
 
+    @DeleteMapping
+    public ResponseEntity<Object> deleteOneUser(Authentication authentication){
+        User authenticatedUser = (User) authentication.getPrincipal();
+        String id = authenticatedUser.getId();
+        User existinUser;
+        try {
+            userService.deleteUser(id);
+        } catch (UserException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body("User successfully deleted");
+    }
 
 }

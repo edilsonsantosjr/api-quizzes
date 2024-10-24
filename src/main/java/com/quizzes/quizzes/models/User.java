@@ -25,5 +25,4 @@ public class User {
     private String profilePicture;
     private LocalDateTime createdAt;
     private String locale;
-    private List<Quiz> quizzes;
 }

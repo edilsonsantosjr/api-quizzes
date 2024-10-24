@@ -20,14 +20,13 @@ public class UserResponseDTO {
     private String locale;
     private List<Quiz> quizzes;
 
-    public UserResponseDTO(String id, String name, String email, String profilePicture, LocalDateTime createAt, String locale, List<Quiz> quizzes) {
+    public UserResponseDTO(String id, String name, String email, String profilePicture, LocalDateTime createAt, String locale) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.profilePicture = profilePicture;
         this.createAt = createAt;
         this.locale = locale;
-        this.quizzes = quizzes;
     }
 
     public UserResponseDTO(String id,String name, String email, String profilePicture) {

@@ -4,16 +4,12 @@ import com.quizzes.quizzes.Repository.UserRepository;
 import com.quizzes.quizzes.dtos.UserRequestDTO;
 import com.quizzes.quizzes.dtos.UserResponseDTO;
 import com.quizzes.quizzes.exceptions.UserException;
-import com.quizzes.quizzes.infra.security.SecurityFilter;
 import com.quizzes.quizzes.interfaces.UserService;
 import com.quizzes.quizzes.models.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLOutput;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,11 +22,6 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<User> getAllUsers() {
-        return null;
-    }
-
-    @Override
     public UserResponseDTO getOneUser(String id) {
         Optional<User> userData = userRepository.findById(id);
 
@@ -39,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
         User userResponse = userData.get();
         UserResponseDTO userResponseDTO = new UserResponseDTO(userResponse.getId(), userResponse.getName(), userResponse.getEmail(), userResponse.getProfilePicture(),
-                userResponse.getCreatedAt(), userResponse.getLocale(), userResponse.getQuizzes());
+                userResponse.getCreatedAt(), userResponse.getLocale());
 
         return userResponseDTO;
     }
@@ -65,6 +56,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String id) {
-
+        if(id != null){
+            userRepository.deleteById(id);
+        }
     }
 }
