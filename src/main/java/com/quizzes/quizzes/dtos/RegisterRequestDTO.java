@@ -1,4 +1,6 @@
 package com.quizzes.quizzes.dtos;
 
-public record RegisterRequestDTO(String name, String email, String password) {
+import jakarta.validation.constraints.NotBlank;
+
+public record RegisterRequestDTO(@NotBlank String name,@NotBlank String email,@NotBlank String password) {
 }

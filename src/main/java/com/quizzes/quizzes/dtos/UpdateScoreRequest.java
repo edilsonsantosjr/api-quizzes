@@ -1,4 +1,6 @@
 package com.quizzes.quizzes.dtos;
 
-public record UpdateScoreRequest(Integer score) {
+import jakarta.validation.constraints.NotBlank;
+
+public record UpdateScoreRequest(@NotBlank Integer score) {
 }

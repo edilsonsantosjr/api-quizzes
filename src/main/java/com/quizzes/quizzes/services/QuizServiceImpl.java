@@ -26,6 +26,9 @@ public class QuizServiceImpl implements QuizService {
         LocalDateTime createdAt = LocalDateTime.now();
         quizModel.setCreatedAt(createdAt);
 
+        if(quizModel == null) {
+            throw new QuizException("Failed to save the quiz");
+        }
         quizRepository.save(quizModel);
         return quizModel;
     }
