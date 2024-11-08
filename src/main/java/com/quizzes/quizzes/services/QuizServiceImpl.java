@@ -18,6 +18,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Autowired
     private QuizRepository quizRepository;
+
     @Override
     public Quiz saveQuiz(QuizRequestDTO quizRequestDTO) {
         Quiz quizModel = new Quiz();
